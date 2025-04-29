@@ -1,32 +1,38 @@
 function getAverage(scores) {
-    let sum = 0;
-  
-    for (let i = 0; i < scores.length; i++) {
-      sum += scores[i];
-    }
-  
-    return sum / scores.length;
+  let sum = 0;
+
+  for (const score of scores) {
+    sum += score;
   }
 
-function getGrade(score) {
-if (score === 100) { return 'A++'; }
-if (score >= 90 && score <= 99) { return 'A'; }
-if (score >= 80 && score <= 89) { return 'B'; }
-if (score >= 70 && score <= 79) { return 'C'; }
-if (score >= 60 && score <= 69) { return 'D'; }
-if (score <= 59) { return 'F'; }	
+  return sum / scores.length;
 }
 
-console.log(getGrade(96));
-console.log(getGrade(82));
-console.log(getGrade(56));
+function getGrade(score) {
+  if (score === 100) {
+    return "A++";
+  } else if (score >= 90) {
+    return "A";
+  } else if (score >= 80) {
+    return "B";
+  } else if (score >= 70) {
+    return "C";
+  } else if (score >= 60) {
+    return "D";
+  } else {
+    return "F";
+  }
+}
 
 function hasPassingGrade(score) {
-    const grade = getGrade(score);
-    return grade !== 'F';
+  return getGrade(score) !== "F";
 }
 
-
-console.log(hasPassingGrade(100));
-console.log(hasPassingGrade(53));
-console.log(hasPassingGrade(87));
+function studentMsg(totalScores, studentScore) {
+    const classAverage = getAverage(totalScores);
+    const studentGrade = getGrade(studentScore);
+    const status = hasPassingGrade(studentScore) ? "passed" : "failed";
+    
+    return "Class average: " + classAverage + ". Your grade: " + studentGrade + ". You " + status + " the course.";
+}
+console.log(studentMsg([92, 88, 12, 77, 57, 100, 67, 38, 97, 89], 37));
