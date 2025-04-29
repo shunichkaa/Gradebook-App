@@ -20,3 +20,13 @@ if (score <= 59) { return 'F'; }
 console.log(getGrade(96));
 console.log(getGrade(82));
 console.log(getGrade(56));
+
+function hasPassingGrade(score) {
+    const grade = getGrade(score);
+    return grade !== 'F';
+}
+
+
+console.log(hasPassingGrade(100));
+console.log(hasPassingGrade(53));
+console.log(hasPassingGrade(87));
